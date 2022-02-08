@@ -1,5 +1,5 @@
-FROM ubuntu:18.04
-RUN apt-get update && apt-get -y install python3 && apt-get -y install python3-pip && apt-get -y install git && git clone https://github.com/anfederico/Flaskex 
+FROM python:3
+RUN git clone https://github.com/anfederico/Flaskex 
 WORKDIR /Flaskex
 RUN pip3 install -r requirements.txt
 ##Библиотека WTForms обновилась и Flask-приложение не запускается,
