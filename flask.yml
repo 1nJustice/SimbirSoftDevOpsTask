@@ -1,0 +1,23 @@
+- name: install Flaskex to Ubuntu 18.04
+  hosts: test_servers
+  become: true
+  tasks:
+  - name: install pip
+    apt:
+      name: python3-pip
+      update_cache: yes
+  - name: pull app from github
+    git:
+      repo: https://github.com/anfederico/flaskex.git
+      dest: /flaskex
+  - name: install requirements
+    pip:
+      requirements: '/flaskex/requirements.txt'
+  - name: downgrade WTForms library
+    pip:
+      name: WTForms
+      state: absent
+  - name: install WTForms v2.3.3
+    pip:
+      name: WTForms
+      version: 2.3.3
